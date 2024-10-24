@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Library Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Library Management System</h1>
+    <p>Please select an action to manage the library:</p>
+
+    <div class="button-container">
+        <button onclick="window.location.href='{{ url_for('books') }}'">Manage Books</button>
+        <button onclick="window.location.href='{{ url_for('members') }}';">Manage Members</button>
+        <button onclick="window.location.href='{{ url_for('transactions', transaction_id=1) }}';">Manage Transactions</button>
+        <button onclick="window.location.href='{{ url_for('search') }}';">Search for Books</button>
+    </div>
+{% endblock %}
+    

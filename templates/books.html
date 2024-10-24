@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+<center>
+<br>
+<h1> Books</h1>
+<a class = "btn btn-basic " href = " {{ url_for('add_book')}}">Add a Book</a>
+<a class = "btn btn-default" href = " {{url_for('import_books')}}">Import Books</a>
+<hr>
+
+<table class = "table table-hover table-stripped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>ISBN number</th>
+            <th>Books Available</th>
+            <th>Publisher</th>
+            <th>No. of pages</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%  for book in books %}
+        <tr>
+            <td> {{book.title}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.isbn}}</td>
+            <td>{{book.stock}}</td>
+            <td>{{book.publisher}}</td>
+            <td>{{book.num_pages}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</center>
+{% endblock %}

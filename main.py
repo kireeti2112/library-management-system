@@ -1,10 +1,11 @@
 import datetime
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from models import db, Book, Member, Transaction
 import requests
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
+app.config['SECRET_KEY'] = 'lbs'
 db.init_app(app)
 
 with app.app_context():
@@ -59,7 +60,7 @@ def issue_book():
         book = Book.query.get(book_id)
         member = Member.query.get(member_id)
 
-        if book.stock > 0:
+        if book.stock > 0 and member.debt < 500:
             book.stock -= 1
             new_transaction = Transaction(book_id = book.book_id, member_id = member.id, issue_date = datetime.datetime.now(), rent_fee = member.debt + 100)
             db.session.add(new_transaction)
@@ -68,14 +69,17 @@ def issue_book():
             return redirect(url_for('transactions'))
     return render_template('issue_book.html')
 
-@app.route('/return_book',methods = ['POST'])
+@app.route('/return_book',methods = ['GET','POST'])
 def return_book():
-    if request.form == "POST":
+    if request.method == 'POST':
         id = request.form['id']
         book_id = request.form['book_id']
-        book = Book.query.get['book_id']
-        member = Member.query.get['id']
-
+        transaction = Transaction.query.filter_by(member_id = id, book_id = book_id).first()
+        member = Member.query.get(id)
+        transaction.return_date = datetime.datetime.now()
+        member.debt -= 100
+        db.session.commit()
+        return redirect(url_for('transactions'))
     return render_template('return_book.html')
 
 @app.route('/transactions', methods = ['GET'])

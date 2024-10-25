@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Return Book {% endblock %}
+
+{% block content %}
+
+<div class = "container mt-5">
+    <form method="post">
+        <label for="id">Enter Member ID</label>
+        <input type = "number" id = "id" name = "id">
+
+        <label for="book_id">Enter Bood ID</label>
+        <input type = "number" id = "book_id" name = "book_id">
+
+        <input type = "submit">
+    </form>
+</div>
+
+{% endblock %}

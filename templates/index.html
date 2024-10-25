@@ -9,7 +9,7 @@
     <div class="button-container">
         <button onclick="window.location.href='{{ url_for('books') }}'">Manage Books</button>
         <button onclick="window.location.href='{{ url_for('members') }}';">Manage Members</button>
-        <button onclick="window.location.href='{{ url_for('transactions', transaction_id=1) }}';">Manage Transactions</button>
+        <button onclick="window.location.href='{{ url_for('transactions') }}';">Manage Transactions</button>
         <button onclick="window.location.href='{{ url_for('search') }}';">Search for Books</button>
     </div>
 {% endblock %}

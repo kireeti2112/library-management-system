@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} Transactions {% endblock %}
+
+{% block content%}
+
+<div class = "container mt-5">
+    <button class = "btn btn-primary" onclick = "window.location.href = '{{ url_for('issue_book')}}'">Issue Book</button>
+    <button class = "btn-secondary">Return Book</button>
+</div>
+
+<div class = "container mt-5">
+    <table class = "table table-hover table-stripped">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Member ID</th>
+                <th>Book ID</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+                <th>Rent fee</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%  for transaction in transactions %}
+            <tr>
+                <td> {{transaction.id}}</td>
+                <td>{{transaction.member_id}}</td>
+                <td>{{transaction.book_id}}</td>
+                <td>{{transaction.issue_date}}</td>
+                <td>{{transaction.return_date}}</td>
+                <td>{{transaction.rent_fee}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{%endblock%}

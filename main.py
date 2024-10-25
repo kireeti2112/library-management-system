@@ -37,42 +37,51 @@ def add_book():
 
 @app.route('/members',methods = ['GET', 'POST'])
 def members():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        new_member = Member(name = name, email = email)
-        db.session.add(new_member)
-        return redirect(url_for('members'))
     members = Member.query.all()
     return render_template('members.html', members = members)
 
-@app.route('/issue_book', methods=['POST'])
+@app.route('/add_members',methods = ['GET', 'POST'])
+def add_members():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        new_member = Member(name = name, email = email, debt = 0.00)
+        db.session.add(new_member)
+        db.session.commit()
+        return redirect(url_for('members'))
+    return render_template('add_members.html')
+
+@app.route('/issue_book', methods=['GET','POST'])
 def issue_book():
-    book_id = request.form['book_id']
-    member_id = request.form['member_id']
-    book = Book.query.get(book_id)
-    member = Member.query.get(member_id)
+    if request.method == 'POST':
+        book_id = request.form['book_id']
+        member_id = request.form['id']
+        book = Book.query.get(book_id)
+        member = Member.query.get(member_id)
 
-    if book.stock > 0:
-        book.stock -= 1
-        new_transaction = Transaction(book_id = book.id, member_id = member.id, issue_date = datetime.datetime.now())
-        db.session.add(new_transaction)
-        db.session.commit()
-    return redirect(url_for('books'))
+        if book.stock > 0:
+            book.stock -= 1
+            new_transaction = Transaction(book_id = book.book_id, member_id = member.id, issue_date = datetime.datetime.now(), rent_fee = member.debt + 100)
+            db.session.add(new_transaction)
+            member.debt += 100
+            db.session.commit()
+            return redirect(url_for('transactions'))
+    return render_template('issue_book.html')
 
-@app.route('/transactions/<int:transaction_id>', methods = ['POST'])
-def transactions(transaction_id):
-    transaction = Transaction.query.get(transaction_id)
-    transaction.return_date = datetime.datetime.now()
-    
-    rent_fee = 100.0
-    transaction.rent_fee = rent_fee
-    
-    member = Member.query.get(transaction.member_id)
-    if member.debt + rent_fee <= 500:
-        member.debt += rent_fee
-        db.session.commit()
-    return redirect(url_for('books'))
+@app.route('/return_book',methods = ['POST'])
+def return_book():
+    if request.form == "POST":
+        id = request.form['id']
+        book_id = request.form['book_id']
+        book = Book.query.get['book_id']
+        member = Member.query.get['id']
+
+    return render_template('return_book.html')
+
+@app.route('/transactions', methods = ['GET'])
+def transactions():
+    transactions = Transaction.query.all()
+    return render_template('transactions.html', transactions = transactions)
 
 @app.route('/search', methods = ['GET'])
 def search():
@@ -85,10 +94,6 @@ def import_books():
     num_books = request.form.get('num_books')
     response = requests.get(f'https://frappe.io/api/method/frappe-library?page=2&title=and')
     books_data = response.json().get('message',[])
-    
-    
-
-
     for book_data in books_data:
         existing_books = Book.query.filter_by(isbn=book_data['isbn']).first()
         if existing_books is None:

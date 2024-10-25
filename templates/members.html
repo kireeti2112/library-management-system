@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Members {% endblock %}
+
+{% block content %}
+<center>
+    
+    <h1>Members</h1>
+    <hr>
+    <table class = "table table-hover table-stripped">
+        <thead>
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Debt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+            <tr>
+                <td>{{member.id}}</td>
+                <td>{{member.name}}</td>
+                <td>{{member.email}}</td>
+                <td>{{member.debt}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <button class = "btn-default" onclick = "window.location.href = '{{ url_for('add_members')}}'">Add Members</button>
+</center>
+{%endblock%}

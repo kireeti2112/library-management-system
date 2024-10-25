@@ -18,7 +18,7 @@ class Member(db.Model):
     debt = db.Column(db.Float , nullable = False)
 
 class Transaction(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     book_id = db.Column(db.Integer, db.ForeignKey('book.book_id'), nullable = False)
     member_id = db.Column(db.Integer, db.ForeignKey('member.id'), nullable = False)
     issue_date = db.Column(db.DateTime, nullable = False)

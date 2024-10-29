@@ -3,42 +3,52 @@
 {% block title %} Add Books {% endblock %}
 
 {% block content %}
-<center>
 <h3> Enter details of the book </h3>
 
     <form class = "form" method = "POST">
-        <div class = "mb-3">
-            <label for = "title" class = "form-label">Title of the Book: </label>
-            <input type = "text" id ="title" name = "title" class = "form-inline" required> <br>
+        <div class = "mb-3 row">
+            <label for = "title" class="col-sm-2 col-form-label">Title of the Book: </label>
+            <div class="col-sm-10" style="border: black;">
+                <input type = "text" id ="title" name = "title" class = "form-control" required> 
+            </div><br>
         </div>
 
-        <div class = "mb-3">
-            <label for = "author">Authors: </label>
-            <input type = "text" id = "author" name = "author" class = "form-control"> <br>
+        <div class = "mb-3 row">
+            <label for = "author" class="col-sm-2 col-form-label">Authors: </label>
+            <div class="col-sm-10">
+                <input type = "text" id = "author" name = "author" class = "form-control">
+            </div> <br>
         </div>
 
-        <div class = "mb-3">
-            <label for = "isbn"> ISBN: </label>
-            <input type = "text" id = "isbn" name = "isbn"> <br>
+        <div class = "mb-3 row">
+            <label for = "isbn" class="col-sm-2 col-form-label"> ISBN: </label>
+            <div class="col-sm-10">
+                <input type = "text" id = "isbn" name = "isbn" class = "form-control" > 
+            </div><br>
         </div>
 
-        <div class = "mb-3">
-            <label for = "stock">Books Available:</label>
-            <input type = "number" id = "stock" name = "stock"> <br>
+        <div class = "mb-3 row">
+            <label for = "stock" class="col-sm-2 col-form-label">Books Available:</label>
+            <div class="col-sm-10">
+                <input type = "number" id = "stock" name = "stock" class = "form-control" > 
+            </div><br>
         </div>
 
-        <div class = "mb-3">
-            <label for = "publisher"> Publisher: </label>
-            <input type = "text" id = "publisher" name = "publisher"> <br>
+        <div class = "mb-3 row" >
+            <label for = "publisher" class="col-sm-2 col-form-label"> Publisher: </label>
+            <div class="col-sm-10">
+                <input type = "text" id = "publisher" name = "publisher" class = "form-control" >
+            </div> <br>
         </div>
 
-        <div class = "mb-3">
-            <label for = "num_pages"> No. of Pages</label>
-            <input type = "number" id = "num_pages" name = "num_pages"> <br>
+        <div class = "mb-3 row">
+            <label for = "num_pages" class="col-sm-2 col-form-label"> No. of Pages</label>
+            <div class="col-sm-10">
+                <input type = "number" id = "num_pages" name = "num_pages" class = "form-control"> 
+            </div><br>
         </div>
 
 
         <input type = "submit">
     </form>
-</center>
 {% endblock %}

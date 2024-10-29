@@ -14,6 +14,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Debt</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,12 @@
                 <td>{{member.name}}</td>
                 <td>{{member.email}}</td>
                 <td>{{member.debt}}</td>
+                <td>
+                    <form method = "POST">
+                        <input type = "hidden" name = "id" value = "{{member.id}}"">
+                        <button type = "submit" class = "text-danger" style = "border : none; background: none;"><i class = "bi bi-trash"></i></button>
+                    </form>
+                </td>
             </tr>
             {%endfor%}
         </tbody>

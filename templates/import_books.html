@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Import books {% endblock %}
+
+{% block content %}
+<h1>Import books</h1>
+<form method = "post">
+    <label for = "title" >Title:</label>
+    <input type = "text" name = "title" id = "title" aria-placeholder="Enter title of the book">
+
+    <label for = "num_books" aria-placeholder="Specify number of books">Number of Books:</label>
+    <input type = "number" name = "num_books" id = "num_books" aria-placeholder="Enter title of the book">
+
+    <input type = "submit">
+</form>
+{%endblock%}

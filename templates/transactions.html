@@ -3,10 +3,11 @@
 {% block title %} Transactions {% endblock %}
 
 {% block content%}
+<h1 style = "text-align: center;">Transactions</h1>
 
 <div class = "container mt-5">
     <button class = "btn btn-primary" onclick = "window.location.href = '{{ url_for('issue_book')}}'">Issue Book</button>
-    <button class = "btn-secondary" onclick = "window.location.href = '{{ url_for('return_book')}}'">Return Book</button>
+    <button class = "btn btn-secondary" onclick = "window.location.href = '{{ url_for('return_book')}}'">Return Book</button>
 </div>
 
 <div class = "container mt-5">

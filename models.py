@@ -14,7 +14,7 @@ class Book(db.Model):
 class Member(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     name = db.Column(db.String(200), nullable = False)
-    email = db.Column(db.String(100), nullable = False)
+    email = db.Column(db.String(100), nullable = False, unique = True)
     debt = db.Column(db.Float , nullable = False)
 
 class Transaction(db.Model):

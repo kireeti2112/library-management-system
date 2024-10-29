@@ -4,13 +4,12 @@
 
 {% block content %}
     <h1>Welcome to the Library Management System</h1>
-    <p>Please select an action to manage the library:</p>
 
-    <div class="button-container">
-        <button onclick="window.location.href='{{ url_for('books') }}'">Manage Books</button>
-        <button onclick="window.location.href='{{ url_for('members') }}';">Manage Members</button>
-        <button onclick="window.location.href='{{ url_for('transactions') }}';">Manage Transactions</button>
-        <button onclick="window.location.href='{{ url_for('search') }}';">Search for Books</button>
+    <div class="d-flex align-items-center justify-content-center flex-column min-vh-50 " style ="top: 20%;">
+        <button onclick="window.location.href='{{ url_for('books') }}'" class = "btn btn-primary">Books</button><br>
+        <button onclick="window.location.href='{{ url_for('members') }}'" class = "btn btn-primary">Members</button><br>
+        <button onclick="window.location.href='{{ url_for('transactions') }}'" class = "btn btn-primary">Transactions</button><br>
+        <button onclick="window.location.href='{{ url_for('search') }}'" class = "btn btn-primary">Search Books</button>
     </div>
 {% endblock %}
     

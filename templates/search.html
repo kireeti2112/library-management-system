@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+
+<h1>Search</h1>
+<form method = "post">
+    <div class = "container mt-5">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search..." name = "query">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">
+                <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+{% if results%}
+<div class = "container mt-5">
+    <h1>Search Results</h1>
+    
+    <table class = "table table-hover">
+        <th>
+            <tr>
+                <td>Book ID</td>
+                <td>Book Name</td>
+                <td>Author</td>
+                <td>Publisher</td>
+                <td>Books Available</td>
+                <td>No. of Pages</td>
+            </tr>
+        </th>
+        {% for result in results %}
+        <tr>
+            <td>{{result.book_id}}</td>
+            <td>{{result.title}}</td>
+            <td>{{result.author}}</td>
+            <td>{{result.publisher}}</td>
+            <td>{{result.stock}}</td>
+            <td>{{result.num_pages}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</div>
+{% endif %}
+{% endblock %}

@@ -5,7 +5,9 @@
 {% block content %}
     <h1>Welcome to the Library Management System</h1>
 
-    <div class="d-flex align-items-center justify-content-center flex-column min-vh-50 " style ="top: 20%;">
+    <br><br>
+
+    <div class="d-flex align-items-center justify-content-center flex-row min-vh-50 " style="top: 20%; gap: 10px;">
         <button onclick="window.location.href='{{ url_for('books') }}'" class = "btn btn-primary">Books</button><br>
         <button onclick="window.location.href='{{ url_for('members') }}'" class = "btn btn-primary">Members</button><br>
         <button onclick="window.location.href='{{ url_for('transactions') }}'" class = "btn btn-primary">Transactions</button><br>
